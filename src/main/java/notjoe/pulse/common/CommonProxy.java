@@ -10,12 +10,14 @@ import notjoe.pulse.api.crafting.melodic.WildcardMelodicCraftingRecipe;
 import notjoe.pulse.api.guidebook.GuidebookEntry;
 import notjoe.pulse.common.content.ModContent;
 import notjoe.pulse.common.content.tile.TileMelodicCrafting;
+import notjoe.pulse.common.content.tile.TilePedestal;
 import notjoe.pulse.common.content.tile.TilePitcher;
 
 public class CommonProxy {
     public void preInit() {
         GameRegistry.registerTileEntity(TilePitcher.class, "tile_pitcher");
         GameRegistry.registerTileEntity(TileMelodicCrafting.class, "tile_melodic_crafting");
+        GameRegistry.registerTileEntity(TilePedestal.class, "tile_pedestal");
     }
 
     public void init() {

@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import notjoe.pulse.api.crafting.harmonic.HarmonicTransmutationRegistry;
 import notjoe.pulse.api.crafting.melodic.MelodicCraftingRegistry;
 import notjoe.pulse.common.CommonProxy;
 import notjoe.pulse.common.content.GuidebookEntries;
@@ -29,6 +30,7 @@ public final class Pulse {
     private Logger logger = LogManager.getLogger();
     private GuidebookEntries guidebookEntries = new GuidebookEntries();
     private MelodicCraftingRegistry melodicCraftingRegistry = new MelodicCraftingRegistry();
+    private HarmonicTransmutationRegistry harmonicTransmutationRegistry = new HarmonicTransmutationRegistry();
     private SimpleNetworkWrapper networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(ID);
 
     @Mod.EventHandler
@@ -52,6 +54,10 @@ public final class Pulse {
 
     public MelodicCraftingRegistry getMelodicCraftingRegistry() {
         return melodicCraftingRegistry;
+    }
+
+    public HarmonicTransmutationRegistry getHarmonicTransmutationRegistry() {
+        return harmonicTransmutationRegistry;
     }
 
     public SimpleNetworkWrapper getNetworkWrapper() {

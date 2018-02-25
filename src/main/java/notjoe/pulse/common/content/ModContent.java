@@ -19,7 +19,8 @@ public final class ModContent {
             new BlockPitcherMajor(),
             new BlockPitcherMinor(),
             new BlockPitcherChromatic(),
-            new BlockMelodicCrafting()
+            new BlockMelodicCrafting(),
+            new BlockPedestal()
     );
 
     public static final Vector<Item> ALL_ITEMS = Vector.of(

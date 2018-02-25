@@ -19,4 +19,12 @@ public interface CraftingIngredient<T> {
             }
         });
     }
+
+    static CraftingIngredient<ItemStack> ofItemStack(ItemStack stack) {
+        return new ItemStackIngredient(stack);
+    }
+
+    static CraftingIngredient<ItemStack> ofOreDictEntry(String oreDict) {
+        return new OreDictIngredient(oreDict);
+    }
 }
