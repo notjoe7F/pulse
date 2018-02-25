@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pulse",
+  "name": "Pulse",
+  "description": "A musical magic mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["notjoe"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

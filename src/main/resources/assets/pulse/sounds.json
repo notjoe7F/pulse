@@ -1,0 +1,7 @@
+{
+  "tuning_fork": {
+    "category": "block",
+    "subtitle": "pulse.subtitle.tuning_fork",
+    "sounds": ["pulse:tuning_fork"]
+  }
+}
