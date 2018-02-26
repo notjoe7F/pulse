@@ -121,7 +121,7 @@ public class EntityNote extends ConstantVelocityEntity {
             spawnMovementParticles();
         }
 
-        if (ticksExisted > Configuration.maxTuningForkTicks) {
+        if (ticksExisted > Configuration.maxNoteTicks) {
             setDead();
         }
     }

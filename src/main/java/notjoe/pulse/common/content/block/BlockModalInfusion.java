@@ -9,13 +9,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import notjoe.pulse.common.content.block.base.AbstractModBlock;
-import notjoe.pulse.common.content.tile.TileHarmonicTransmutation;
+import notjoe.pulse.common.content.tile.TileModalInfusion;
 
 import javax.annotation.Nullable;
 
-public class BlockHarmonicTransmutation extends AbstractModBlock {
-    public BlockHarmonicTransmutation() {
-        super("harmonic_transmutation", Material.ROCK);
+public class BlockModalInfusion extends AbstractModBlock {
+    public BlockModalInfusion() {
+        super("modal_infusion", Material.IRON);
     }
 
     @Override
@@ -26,14 +26,14 @@ public class BlockHarmonicTransmutation extends AbstractModBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileHarmonicTransmutation();
+        return new TileModalInfusion();
     }
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntity tile = worldIn.getTileEntity(pos);
-        if (tile instanceof TileHarmonicTransmutation) {
-            ((TileHarmonicTransmutation) tile).onBlockActivated(playerIn);
+        if (tile instanceof TileModalInfusion) {
+            ((TileModalInfusion) tile).onBlockActivated();
         }
 
         return true;

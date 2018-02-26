@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import notjoe.pulse.Pulse;
 import notjoe.pulse.common.content.block.*;
+import notjoe.pulse.common.content.block.base.SimpleModalRune;
 import notjoe.pulse.common.content.item.ItemGuidebook;
 import notjoe.pulse.common.content.item.ItemTuningFork;
 
@@ -20,7 +21,10 @@ public final class ModContent {
             new BlockPitcherMinor(),
             new BlockPitcherChromatic(),
             new BlockMelodicCrafting(),
-            new BlockPedestal()
+            new BlockPedestal(),
+            new BlockHarmonicTransmutation(),
+            new SimpleModalRune("basic", 1, 1, 1),
+            new BlockModalInfusion()
     );
 
     public static final Vector<Item> ALL_ITEMS = Vector.of(

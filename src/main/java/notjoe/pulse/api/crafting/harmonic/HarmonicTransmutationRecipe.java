@@ -30,6 +30,14 @@ public class HarmonicTransmutationRecipe<T> {
         return consonantEnergyRequired;
     }
 
+    public int getInputCount() {
+        return inputCount;
+    }
+
+    public int getCatalystCount() {
+        return catalystCount;
+    }
+
     public int getDissonantEnergyRequired() {
         return dissonantEnergyRequired;
     }

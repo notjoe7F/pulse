@@ -15,4 +15,5 @@ public final class ModBlockContainer {
     public static final Block PITCHER_PENTATONIC = null;
     public static final Block MELODIC_CRAFTING_TABLE = null;
     public static final Block HARMONIC_TRANSMUTATION = null;
+    public static final Block PEDESTAL = null;
 }

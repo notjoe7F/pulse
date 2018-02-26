@@ -11,4 +11,7 @@ public final class PulseCapabilities {
 
     @CapabilityInject(HarmonicEnergyProvider.class)
     public static final Capability<HarmonicEnergyProvider> HARMONIC_ENERGY_PROVIDER = null;
+
+    @CapabilityInject(ModalRune.class)
+    public static final Capability<ModalRune> MODAL_RUNE = null;
 }
