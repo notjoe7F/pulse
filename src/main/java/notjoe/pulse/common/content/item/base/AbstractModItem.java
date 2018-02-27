@@ -20,6 +20,10 @@ public class AbstractModItem extends Item implements CustomItemModelProvider {
         setCreativeTab(PulseTab.CREATIVE_TAB);
     }
 
+    public String getInternalName() {
+        return internalName;
+    }
+
     @Override
     public Map<Integer, ModelResourceLocation> getItemModelLocations() {
         return HashMap.of(0, new ModelResourceLocation(getRegistryName(), "inventory"));

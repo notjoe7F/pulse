@@ -5,10 +5,13 @@ import io.vavr.control.Option;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import notjoe.pulse.Pulse;
 import notjoe.pulse.api.crafting.modal.ModalInfusionRecipe;
 import notjoe.pulse.common.capability.ModalRune;
+import notjoe.pulse.common.network.ModalInfusionRenderPacket;
 
 import java.util.Random;
 
@@ -23,9 +26,11 @@ public class ModalInfusionWorker implements INBTSerializable<NBTTagCompound> {
     private final TileModalInfusion tile;
 
     public ModalInfusionWorker(TileModalInfusion tile) {
+        this.tile = tile;
         workingRecipe = Option.none();
         craftingTicksRemaining = 0;
         isCurrentlyCrafting = false;
+        isWaitingForIngredients = false;
     }
 
     public void startCrafting(ModalInfusionRecipe<ItemStack> recipe) {
@@ -33,6 +38,11 @@ public class ModalInfusionWorker implements INBTSerializable<NBTTagCompound> {
         workingRecipe = Option.of(recipe);
         craftingTicksRemaining = tile.getEffectiveTime(tile.getRunes());
         isCurrentlyCrafting = true;
+
+        if (!canContinueCrafting() || !allIngredientsPresent()) {
+            System.out.println("Worker can't craft");
+            invalidateCraftingState();
+        }
     }
 
     public Option<ResourceLocation> getRecipeName() {
@@ -49,14 +59,18 @@ public class ModalInfusionWorker implements INBTSerializable<NBTTagCompound> {
     public boolean canContinueCrafting() {
         return isCurrentlyCrafting &&
                 (craftingTicksRemaining > 0) &&
+                tile.hasPedestalAbove() &&
                 workingRecipe.isDefined() &&
-                (tile.getSetupTier() > workingRecipe.get().getTierRequired()) &&
+                (tile.getSetupTier() >= workingRecipe.get().getTierRequired()) &&
                 (tile.getAeolianEssence() >= workingRecipe.get().getAeolianEssenceRequired()) &&
                 (tile.getIonianEssence() >= workingRecipe.get().getIonianEssenceRequired());
     }
 
     public boolean allIngredientsPresent() {
-        return workingRecipe.get().allInputsPresent(tile.getPedestalStacks());
+        ModalInfusionRecipe<ItemStack> infusionRecipe = workingRecipe.get();
+        return workingRecipe.get().allInputsPresent(tile.getPedestalStacks()) &&
+                tile.getAeolianEssence() >= infusionRecipe.getAeolianEssenceRequired() &&
+                tile.getIonianEssence() >= infusionRecipe.getIonianEssenceRequired();
     }
 
     public void tickCrafting() {
@@ -76,14 +90,28 @@ public class ModalInfusionWorker implements INBTSerializable<NBTTagCompound> {
         ModalInfusionRecipe<ItemStack> recipe = workingRecipe.get();
         Vector<ItemStack> pedestalStacks = tile.getPedestalStacks();
         Vector<ModalRune> runes = tile.getRunes();
+        BlockPos tilePos = tile.getPos();
 
-        if (RANDOM.nextDouble() > tile.getEffectiveInstability(runes)) {
-            pedestalStacks.get(RANDOM.nextInt(pedestalStacks.length())).shrink(1);
+        if (RANDOM.nextDouble() < tile.getEffectiveInstability(runes) && craftingTicksRemaining % 10 == 0) {
+            int destroyIndex = RANDOM.nextInt(pedestalStacks.length());
+            pedestalStacks.get(destroyIndex).shrink(1);
+            tile.onStackDestroyed(destroyIndex);
         }
 
-        if ((craftingTicksRemaining > 40) && !isWaitingForIngredients) {
-            craftingTicksRemaining--;
-        } else if (craftingTicksRemaining <= 1) {
+        if (isWaitingForIngredients) {
+            return;
+        }
+
+        if (craftingTicksRemaining % 5 == 0) {
+            Pulse.instance.getNetworkWrapper().sendToAllAround(new ModalInfusionRenderPacket(tilePos,
+                            ModalInfusionRenderPacket.Action.CRAFTING_TICK),
+                    new NetworkRegistry.TargetPoint(tile.getWorld().provider.getDimension(),
+                            tilePos.getX(), tilePos.getY(), tilePos.getZ(), 40));
+        }
+
+        craftingTicksRemaining--;
+
+        if (craftingTicksRemaining <= 1) {
             pedestalStacks.forEach(stack -> {
                 if (RANDOM.nextDouble() < tile.getEffectiveEfficiency(runes)) {
                     stack.shrink(1);
@@ -91,12 +119,20 @@ public class ModalInfusionWorker implements INBTSerializable<NBTTagCompound> {
             });
 
             tile.finishCrafting(recipe);
+            Pulse.instance.getNetworkWrapper().sendToAllAround(new ModalInfusionRenderPacket(tilePos,
+                            ModalInfusionRenderPacket.Action.FINISH_EFFECT),
+                    new NetworkRegistry.TargetPoint(tile.getWorld().provider.getDimension(),
+                            tilePos.getX(), tilePos.getY(), tilePos.getZ(), 40));
             invalidateCraftingState();
         }
     }
 
     public boolean isCurrentlyCrafting() {
         return isCurrentlyCrafting;
+    }
+
+    public Option<ModalInfusionRecipe<ItemStack>> getWorkingRecipe() {
+        return workingRecipe;
     }
 
     @Override

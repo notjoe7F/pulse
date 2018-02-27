@@ -1,7 +1,9 @@
 package notjoe.pulse;
 
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -27,6 +29,10 @@ public final class Pulse {
 
     @Mod.Instance(Pulse.ID)
     public static Pulse instance;
+
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 
     private Logger logger = LogManager.getLogger();
     private GuidebookEntries guidebookEntries = new GuidebookEntries();

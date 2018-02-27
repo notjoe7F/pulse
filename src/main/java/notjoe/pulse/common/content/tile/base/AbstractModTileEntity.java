@@ -9,8 +9,11 @@ import net.minecraft.tileentity.TileEntity;
 import notjoe.pulse.common.util.WorldWrapper;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public abstract class AbstractModTileEntity extends TileEntity {
+    protected static final Random RANDOM = new Random();
+
     public WorldWrapper getWorldWrapper() {
         return new WorldWrapper(world);
     }
@@ -51,7 +54,7 @@ public abstract class AbstractModTileEntity extends TileEntity {
     public abstract void writeCustomDataToNbt(NBTTagCompound compound);
     public abstract void readCustomDataFromNbt(NBTTagCompound compound);
 
-    protected void syncToClient() {
+    public void syncToClient() {
         IBlockState state = world.getBlockState(pos);
         world.markBlockRangeForRenderUpdate(pos, pos);
         world.notifyBlockUpdate(pos, state, state, 3);

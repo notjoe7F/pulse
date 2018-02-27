@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 
 public class HarmonicEnergyProviderFactory implements Callable<HarmonicEnergyProvider> {
     @Override
-    public HarmonicEnergyProvider call() throws Exception {
+    public HarmonicEnergyProvider call() {
         return new HarmonicEnergyProvider() {
             @Override
             public int getAvailableEnergy() {

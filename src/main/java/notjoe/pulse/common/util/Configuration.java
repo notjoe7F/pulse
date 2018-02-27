@@ -6,6 +6,7 @@ import notjoe.pulse.Pulse;
 // Is there a way to make these fields final? This is kinda gross
 @Config(modid = Pulse.ID)
 public final class Configuration {
+
     private Configuration() { }
 
     @Config.Comment("Sets the time (in ticks) that the tuning fork should cooldown for.")
@@ -21,6 +22,9 @@ public final class Configuration {
 
     @Config.Comment({"Sets the number of particles rendered for a Note per block."})
     public static int noteRenderSteps = 5;
+
+    @Config.Comment({"Sets the number of particles rendered for each event during Modal Infusion."})
+    public static int infusionRenderSteps = 18;
 
     @Config.Comment({"Sets the maximum distance in any direction a pedestal can be away from the center of a",
                      "Modal Infusion setup."})

@@ -8,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.CapabilityItemHandler;
 import notjoe.pulse.Pulse;
-import notjoe.pulse.api.concept.HarmonicEnergyGetter;
 import notjoe.pulse.api.concept.HarmonicEnergyType;
 import notjoe.pulse.api.crafting.harmonic.HarmonicTransmutationRecipe;
 import notjoe.pulse.common.content.block.ModBlockContainer;
@@ -60,11 +59,11 @@ public class TileHarmonicTransmutation extends AbstractModTileEntity {
     }
 
     private int getAvailableConsonantEnergy() {
-        return new HarmonicEnergyGetter(world).getAvailableEnergy(pos, HarmonicEnergyType.CONSONANT);
+        return 0;
     }
 
     private int getAvailableDissonantEnergy() {
-        return new HarmonicEnergyGetter(world).getAvailableEnergy(pos, HarmonicEnergyType.DISSONANT);
+        return 0;
     }
 
     @Override

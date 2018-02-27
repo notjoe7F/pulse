@@ -21,6 +21,7 @@ import notjoe.pulse.common.util.Configuration;
 public class ItemTuningFork extends AbstractModItem implements GuidebookEntry {
     public ItemTuningFork() {
         super("tuning_fork");
+        setMaxStackSize(1);
     }
 
     @Override

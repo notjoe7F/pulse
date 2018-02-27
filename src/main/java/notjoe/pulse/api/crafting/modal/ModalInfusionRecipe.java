@@ -39,6 +39,10 @@ public class ModalInfusionRecipe<T> {
         return tierRequired;
     }
 
+    public Note getInitiator() {
+        return initiator;
+    }
+
     public boolean matches(Note givenInitiator, Vector<T> givenInputs, int aeolianEssenceAvailable, int ionianEssenceAvailable, int tierAvailable) {
         return (initiator == givenInitiator) &&
                 (inputs.length() == givenInputs.length()) &&

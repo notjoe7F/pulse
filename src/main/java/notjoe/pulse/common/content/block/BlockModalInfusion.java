@@ -28,14 +28,4 @@ public class BlockModalInfusion extends AbstractModBlock {
     public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileModalInfusion();
     }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        TileEntity tile = worldIn.getTileEntity(pos);
-        if (tile instanceof TileModalInfusion) {
-            ((TileModalInfusion) tile).onBlockActivated();
-        }
-
-        return true;
-    }
 }

@@ -16,7 +16,7 @@ public class TilePedestal extends AbstractModTileEntity {
     private ExtendedItemStackHandler stackHandler;
 
     public TilePedestal() {
-        stackHandler = new ExtendedItemStackHandler(1, this::markDirty);
+        stackHandler = new ExtendedItemStackHandler(1, this::syncToClient);
     }
 
     public void onActivated(EntityPlayer player) {
@@ -25,12 +25,10 @@ public class TilePedestal extends AbstractModTileEntity {
             stackHandler.setStackInSlot(0, player.getHeldItemMainhand());
             player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
             player.inventory.markDirty();
-            syncToClient();
         } else if (!containedStack.isEmpty() && player.getHeldItemMainhand().isEmpty()) {
             player.setHeldItem(EnumHand.MAIN_HAND, containedStack);
             stackHandler.setStackInSlot(0, ItemStack.EMPTY);
             player.inventory.markDirty();
-            syncToClient();
         }
     }
 

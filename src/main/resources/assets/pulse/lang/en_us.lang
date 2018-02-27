@@ -1,0 +1,19 @@
+itemGroup.pulse=Pulse
+
+item.pulse.tuning_fork.name=Tuning Fork
+
+tile.pulse.pitcher_pentatonic.name=Pitcher (Pentatonic)
+tile.pulse.pitcher_major.name=Pitcher (Major)
+tile.pulse.pitcher_minor.name=Pitcher (Minor)
+tile.pulse.pitcher_chromatic.name=Pitcher (Chromatic)
+tile.pulse.pedestal.name=Pedestal
+tile.pulse.harmonic_transmutation.name=Harmonic Transmutation Matrix
+tile.pulse.modal_rune_basic.name=Modal Rune - Moderato
+tile.pulse.modal_rune_speed.name=Modal Rune - Vivace
+tile.pulse.modal_rune_efficient.name=Modal Rune - Leggiero
+tile.pulse.modal_rune_stable.name=Modal Rune - Sostenuto
+tile.pulse.modal_infusion.name=Modal Infusion Core
+
+pulse.rune.speed=%dx Time Taken
+pulse.rune.instability=%dx Instability
+pulse.rune.efficiency=%dx Efficiency

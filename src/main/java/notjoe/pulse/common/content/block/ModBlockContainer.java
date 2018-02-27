@@ -16,4 +16,7 @@ public final class ModBlockContainer {
     public static final Block MELODIC_CRAFTING_TABLE = null;
     public static final Block HARMONIC_TRANSMUTATION = null;
     public static final Block PEDESTAL = null;
+    public static final Block FLUID_AEOLIAN_ESSENCE = null;
+    public static final Block FLUID_IONIAN_ESSENCE = null;
+    public static final Block CRYSTAL = null;
 }

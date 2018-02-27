@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pulse:rune_speed"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}
