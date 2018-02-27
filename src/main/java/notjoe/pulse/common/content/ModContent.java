@@ -24,7 +24,11 @@ public final class ModContent {
             new BlockPedestal(),
             new BlockHarmonicTransmutation(),
             new SimpleModalRune("basic", 1, 1, 1),
-            new BlockModalInfusion()
+            new SimpleModalRune("speed", 0.9, 1.3, 0.7),
+            new SimpleModalRune("stable", 1.2, 0.8, 0.9),
+            new SimpleModalRune("efficient", 0.8, 0.9, 1.5),
+            new BlockModalInfusion(),
+            new BlockCrystalConsonant()
     );
 
     public static final Vector<Item> ALL_ITEMS = Vector.of(

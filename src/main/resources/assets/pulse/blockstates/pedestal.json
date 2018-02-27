@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pulse:pedestal"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

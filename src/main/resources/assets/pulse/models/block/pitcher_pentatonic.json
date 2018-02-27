@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "pulse:blocks/pitcher_pentatonic_front",
+    "down": "pulse:blocks/pitcher_pentatonic_side",
+    "up": "pulse:blocks/pitcher_pentatonic_side",
+    "east": "pulse:blocks/pitcher_pentatonic_side",
+    "west": "pulse:blocks/pitcher_pentatonic_side",
+    "north": "pulse:blocks/pitcher_pentatonic_front",
+    "south": "pulse:blocks/pitcher_pentatonic_side"
+  }
+}

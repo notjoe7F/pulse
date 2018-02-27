@@ -26,25 +26,35 @@ public class TileModalInfusion extends AbstractModTileEntity implements ITickabl
     public static final int TIER_1_HEIGHT = 3;
     public static final int TIER_2_HEIGHT = 5;
 
-    private boolean crafting = false;
-    private int ticksRemaining = 0;
-    private Option<ModalInfusionRecipe<ItemStack>> currentRecipe;
+    private final ModalInfusionWorker worker = new ModalInfusionWorker(this);
 
     private NoteHandler noteHandler = (note, facing) -> {
-        if (crafting) {
+        if (worker.isCurrentlyCrafting()) {
             return;
         }
 
-        // do things
+        Option<ModalInfusionRecipe<ItemStack>> potentialRecipe = Pulse.instance.getModalInfusionRegistry()
+                .findMatchingRecipe(note.getNote(), getPedestalStacks(), getAeolianEssence(), getIonianEssence(),
+                        getSetupTier());
+
+        if (potentialRecipe.isDefined()) {
+            worker.startCrafting(potentialRecipe.get());
+        }
     };
 
-    private void initiateCrafting() {
-        Vector<ModalRune> activeRunes = getRunes();
-        ticksRemaining = getEffectiveTime(activeRunes);
+    public Vector<ItemStack> getPedestalStacks() {
 
     }
 
-    private int getSetupTier() {
+    public int getAeolianEssence() {
+        return 0;
+    }
+
+    public int getIonianEssence() {
+
+    }
+
+    int getSetupTier() {
         if (world.getBlockState(pos.up()).getBlock() == ModBlockContainer.PEDESTAL) {
             if (!getOffsetCorners(TIER_1_DISTANCE)
                     .forAll(cornerPos -> pillarExistsAt(cornerPos, TIER_1_PILLAR_BLOCK, TIER_1_HEIGHT))) {
@@ -79,7 +89,7 @@ public class TileModalInfusion extends AbstractModTileEntity implements ITickabl
                         .map(j -> pos.add(i, 0, j)));
     }
 
-    private Vector<ModalRune> getRunes() {
+    public Vector<ModalRune> getRunes() {
         int tier = getSetupTier();
         Vector<ModalRune> runes = Vector.empty();
 
@@ -120,22 +130,20 @@ public class TileModalInfusion extends AbstractModTileEntity implements ITickabl
 
     @Override
     public void writeCustomDataToNbt(NBTTagCompound compound) {
-        compound.setBoolean("crafting", crafting);
-        compound.setInteger("ticks_remaining", ticksRemaining);
-        if (currentRecipe.isDefined()) {
-            compound.setInteger("recipe", Pulse.instance.getModalInfusionRegistry().indexOfRecipe(currentRecipe.get()));
-        } else {
-            compound.setInteger("recipe", -1);
-        }
+
     }
 
     @Override
     public void readCustomDataFromNbt(NBTTagCompound compound) {
-        // NYI
+
     }
 
     @Override
     public void update() {
-        // NYI
+        worker.tickCrafting();
+    }
+
+    public void finishCrafting(ModalInfusionRecipe<ItemStack> recipe) {
+
     }
 }

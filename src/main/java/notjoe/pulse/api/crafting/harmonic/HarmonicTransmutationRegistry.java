@@ -1,21 +1,11 @@
 package notjoe.pulse.api.crafting.harmonic;
 
-import io.vavr.collection.Vector;
 import io.vavr.control.Option;
 import net.minecraft.item.ItemStack;
+import notjoe.pulse.api.crafting.AbstractNamedRegistry;
 
-public class HarmonicTransmutationRegistry {
-    private Vector<HarmonicTransmutationRecipe<ItemStack>> recipes;
-
-    public HarmonicTransmutationRegistry() {
-        recipes = Vector.empty();
-    }
-
-    public void add(HarmonicTransmutationRecipe<ItemStack> recipe) {
-        recipes = recipes.append(recipe);
-    }
-
+public class HarmonicTransmutationRegistry extends AbstractNamedRegistry<HarmonicTransmutationRecipe<ItemStack>> {
     public Option<HarmonicTransmutationRecipe<ItemStack>> findMatchingRecipe(ItemStack givenInput, ItemStack givenCatalyst, int availableConsonantEnergy, int availableDissonantEnergy) {
-        return recipes.find(recipe -> recipe.matches(givenInput, givenInput.getCount(), givenCatalyst, givenCatalyst.getCount(), availableConsonantEnergy, availableDissonantEnergy));
+        return objects.values().find(recipe -> recipe.matches(givenInput, givenInput.getCount(), givenCatalyst, givenCatalyst.getCount(), availableConsonantEnergy, availableDissonantEnergy));
     }
 }

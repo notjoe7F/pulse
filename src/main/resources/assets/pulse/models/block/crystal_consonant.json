@@ -1,0 +1,138 @@
+﻿{
+	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
+	"textures": {
+		"0": "pulse:blocks/consonant_crystal_textures",
+		"particle": "pulse:blocks/consonant_crystal_textures"
+	},
+	"elements": [
+		{
+			"name": "zcube",
+			"from": [5.5, 5.5, 5.5],
+			"to": [10.5, 10.5, 10.5],
+			"faces": {
+				"north": {
+					"uv": [9, 1, 14, 6],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"east": {
+					"uv": [10, 0, 15, 5],
+					"rotation": 90,
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [9, 3, 14, 8],
+					"rotation": 90,
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [9, 2, 14, 7],
+					"rotation": 90,
+					"texture": "#0"
+				},
+				"up": {
+					"uv": [10, 0, 15, 5],
+					"texture": "#0",
+					"rotation": 90
+				},
+				"down": {
+					"uv": [10, 0, 15, 5],
+					"texture": "#0",
+					"rotation": 90
+				}
+			},
+			"rotation": {
+				"origin": [8, 8, 8],
+				"axis": "z",
+				"angle": 45
+			},
+			"type": "cube"
+		},
+		{
+			"name": "ycube",
+			"from": [5.5, 5.5, 5.5],
+			"to": [10.5, 10.5, 10.5],
+			"faces": {
+				"north": {"uv": [1, 8, 6, 13], "texture": "#0"},
+				"east": {"uv": [2, 8, 7, 13], "texture": "#0"},
+				"south": {"uv": [0, 8, 5, 13], "texture": "#0"},
+				"west": {"uv": [0, 8, 5, 13], "texture": "#0"},
+				"up": {
+					"uv": [1, 8, 6, 13],
+					"rotation": 180,
+					"texture": "#0"
+				},
+				"down": {"uv": [2, 11, 7, 16], "texture": "#0"}
+			},
+			"rotation": {
+				"origin": [8, 8, 8],
+				"axis": "y",
+				"angle": 45
+			},
+			"type": "cube"
+		},
+		{
+			"name": "xcube",
+			"from": [5.5, 5.5, 5.5],
+			"to": [10.5, 10.5, 10.5],
+			"faces": {
+				"north": {"uv": [0, 0, 5, 5], "texture": "#0"},
+				"east": {
+					"uv": [3, 1, 8, 6],
+					"texture": "#0",
+					"rotation": 270
+				},
+				"south": {
+					"uv": [0, 2, 5, 7],
+					"texture": "#0",
+					"rotation": 180
+				},
+				"west": {
+					"uv": [3, 0, 8, 5],
+					"texture": "#0",
+					"rotation": 270
+				},
+				"up": {"uv": [1, 0, 6, 5], "texture": "#0"},
+				"down": {"uv": [2, 3, 7, 8], "texture": "#0"}
+			},
+			"rotation": {
+				"origin": [8, 8, 8],
+				"axis": "x",
+				"angle": 45
+			},
+			"type": "cube"
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.375, 0.375, 0.375],
+			"rotation": [75, 45, 0],
+			"translation": [0, 1, 0]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.375, 0.375, 0.375],
+			"rotation": [75, 45, 0],
+			"translation": [0, 1, 0]
+		},
+		"firstperson_righthand": {
+			"scale": [0.4, 0.4, 0.4],
+			"rotation": [0, 45, 0],
+			"translation": [0, 0, 0]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.4, 0.4, 0.4],
+			"rotation": [0, 225, 0],
+			"translation": [0, 0, 0]
+		},
+		"ground": {
+			"scale": [0.75, 0.75, 0.75],
+			"rotation": [0, 0, 0],
+			"translation": [0, 3, 0]
+		},
+		"gui": {
+			"scale": [0.75, 0.75, 0.75],
+			"rotation": [30, 225, 0],
+			"translation": [0, 0, 0]
+		}
+	}
+}
